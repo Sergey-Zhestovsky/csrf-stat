@@ -14,7 +14,7 @@ import styles from './table.module.scss';
 
 const Table = (props) => {
   const { rows } = props;
-  const isEmpty = true;//!rows || rows.length === 0;
+  const isEmpty = !rows || rows.length === 0;
 
   const getRows = (tRows = []) => {
     return tRows.map((row, i) => {
@@ -43,7 +43,7 @@ const Table = (props) => {
               <TableCell>Load</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{!isEmpty && getRows(new Array(100).fill(rows[0]))}</TableBody>
+          <TableBody>{!isEmpty && getRows(new Array(2).fill(rows[0]))}</TableBody>
         </MaterialTable>
         {isEmpty && (
           <Typography className={styles.empty} variant="h5">
