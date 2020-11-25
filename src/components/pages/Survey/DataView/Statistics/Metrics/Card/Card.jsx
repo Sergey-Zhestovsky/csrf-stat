@@ -7,6 +7,7 @@ const Card = (props) => {
   const { name, value } = props;
 
   const prepareValue = (val) => {
+    if (!val) return `none.`;
     const v = parseFloat(val);
     return Math.round(v * 100) / 100;
   };

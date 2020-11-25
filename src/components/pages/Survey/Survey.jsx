@@ -64,6 +64,7 @@ const surveyResults = [
   {
     id: 1,
     time: 0.12553,
+    delay: 0.12553,
     queue: 0.12553,
     load: 0.12553,
   },
