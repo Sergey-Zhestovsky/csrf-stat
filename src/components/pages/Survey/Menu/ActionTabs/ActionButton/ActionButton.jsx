@@ -5,12 +5,23 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import styles from './action-button.module.scss';
 
 const ActionButton = (props) => {
-  const { icon: Icon, tooltip, actionState, currentState } = props;
-  const isActive = actionState === currentState;
+  const {
+    icon: Icon = () => {},
+    tooltip,
+    active = false,
+    disabled = false,
+    onClick = () => {},
+  } = props;
 
   return (
     <Tooltip title={tooltip}>
-      <IconButton className={classnames(styles.actionButton, { [styles.active]: isActive })} disabled={isActive}>
+      <IconButton
+        className={classnames(styles.actionButton, {
+          [styles.active]: active,
+        })}
+        disabled={disabled}
+        onClick={onClick}
+      >
         <Icon />
       </IconButton>
     </Tooltip>

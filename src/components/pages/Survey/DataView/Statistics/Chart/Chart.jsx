@@ -1,19 +1,26 @@
 import React from 'react';
-import { Box, Paper, Grid, ButtonGroup, Button } from '@material-ui/core';
+import { Box, Paper, Grid } from '@material-ui/core';
 import { Chart as ReactChart } from 'react-charts';
 import ChartController, { chartModes } from './ChartController/ChartController';
 
 import styles from './chart.module.scss';
 
 const Chart = (props) => {
-  const { data = [] } = props;
+  const { data = [], mode, onChangeMode } = props;
 
   const memData = React.useMemo(() => [{ data }], [data]);
   const series = React.useMemo(() => ({ type: 'bar' }), []);
   const getSeriesStyle = React.useCallback(() => ({ color: '#f50357' }), []);
   const axes = React.useMemo(
     () => [
-      { primary: true, type: 'ordinal', position: 'bottom', show: false, outerPadding: 0, innerPadding: 0 },
+      {
+        primary: true,
+        type: 'ordinal',
+        position: 'bottom',
+        show: false,
+        outerPadding: 0,
+        innerPadding: 0,
+      },
       { position: 'left', type: 'linear', stacked: true },
     ],
     []
@@ -26,7 +33,7 @@ const Chart = (props) => {
           <ReactChart data={memData} series={series} axes={axes} getSeriesStyle={getSeriesStyle} />
         </Box>
         <Box className={styles.buttonGroupWrapper}>
-          <ChartController mode={chartModes.speed} />
+          <ChartController mode={mode} onChange={onChangeMode} />
         </Box>
       </Paper>
     </Grid>
@@ -34,3 +41,4 @@ const Chart = (props) => {
 };
 
 export default Chart;
+export { chartModes };

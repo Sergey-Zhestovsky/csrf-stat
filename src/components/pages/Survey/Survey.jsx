@@ -1,8 +1,8 @@
-import React from 'react';
-import Menu, { actionStates } from './Menu/Menu';
-import DataView from './DataView/DataView';
+import React, { useState } from 'react';
+import Menu, { actionStates, actions } from './Menu/Menu';
+import DataView, { chartModes } from './DataView/DataView';
 
-const protectionMethods = [
+const algorithmList = [
   {
     id: 1,
     name: 'Double cookies',
@@ -70,17 +70,47 @@ const surveyResults = [
   },
 ];
 
+const chartData = [
+  [1, 5],
+  [2, 8],
+  [3, 45],
+  [4, 12],
+  [5, 46],
+  [6, 32],
+];
+
+const avgStat = {
+  speed: 123,
+  delay: 341,
+  queue: 12,
+  load: 723,
+};
+
 const Survey = (props) => {
+  const chosen = 1;
+  const tr = new Array(100).fill(surveyResults[0]);
+
   return (
     <>
       <Menu
-        methodsList={protectionMethods}
-        method={1}
+        algorithmList={algorithmList}
+        currentAlgorithm={1}
+        onAlgorithmChange={() => null}
         environmentList={environments}
-        environment={1}
-        actionState={actionStates.started}
+        currentEnvironment={1}
+        onEnvironmentChange={() => null}
+        currentActionState={actionStates.started}
+        withResults={false}
+        onActinChange={() => null}
       />
-      <DataView results={surveyResults} />
+      <DataView
+        results={tr}
+        chartData={chartData}
+        statistic={avgStat}
+        title={algorithmList[0].name}
+        chartMode={chartModes.speed}
+        onChangeChartMode={() => null}
+      />
     </>
   );
 };

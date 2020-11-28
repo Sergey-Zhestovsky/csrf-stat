@@ -1,6 +1,16 @@
+.title {
+  padding: 2rem 3rem;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #444444;
+
+  &::first-letter {
+    color: #f50357;
+  }
+}
+
 .wrapper {
   display: flex;
-  margin-top: 4rem;
 }
 
 .col {

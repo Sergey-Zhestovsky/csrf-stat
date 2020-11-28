@@ -12,20 +12,21 @@ export const chartModes = {
 };
 
 const ChartController = (props) => {
-  const { mode } = props;
+  const { mode, onChange = () => {} } = props;
 
   return (
     <ButtonGroup variant="outlined" color="primary">
       <Button
         className={classnames(styles.button, { [styles.active]: mode === chartModes.speed })}
         disabled={mode === chartModes.speed}
+        onClick={onChange.bind(null, chartModes.speed)}
       >
         Speed
       </Button>
-
       <Button
         className={classnames(styles.button, { [styles.active]: mode === chartModes.delay })}
         disabled={mode === chartModes.delay}
+        onClick={onChange.bind(null, chartModes.delay)}
       >
         Delay
       </Button>
@@ -33,6 +34,7 @@ const ChartController = (props) => {
       <Button
         className={classnames(styles.button, { [styles.active]: mode === chartModes.queue })}
         disabled={mode === chartModes.queue}
+        onClick={onChange.bind(null, chartModes.queue)}
       >
         Queue
       </Button>
@@ -40,6 +42,7 @@ const ChartController = (props) => {
       <Button
         className={classnames(styles.button, { [styles.active]: mode === chartModes.load })}
         disabled={mode === chartModes.load}
+        onClick={onChange.bind(null, chartModes.load)}
       >
         Load
       </Button>

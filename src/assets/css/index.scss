@@ -11,3 +11,7 @@ html {
 button {
   font-size: inherit;
 }
+
+::selection {
+  background: #3f51b533;
+}

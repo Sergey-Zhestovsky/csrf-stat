@@ -43,7 +43,7 @@ const Table = (props) => {
               <TableCell>Load</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{!isEmpty && getRows(new Array(2).fill(rows[0]))}</TableBody>
+          <TableBody>{!isEmpty && getRows(rows)}</TableBody>
         </MaterialTable>
         {isEmpty && (
           <Typography className={styles.empty} variant="h5">
