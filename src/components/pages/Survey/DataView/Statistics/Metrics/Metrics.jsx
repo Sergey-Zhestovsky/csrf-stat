@@ -1,5 +1,4 @@
 import React from 'react';
-import { Typography, Box, Grid, Paper } from '@material-ui/core';
 import Card from './Card/Card';
 
 const Metrics = (props) => {
@@ -7,10 +6,10 @@ const Metrics = (props) => {
 
   return (
     <>
-      <Card name="Average speed" value={avgStat.speed} />
-      <Card name="Average delay" value={avgStat.delay} />
-      <Card name="Average queue" value={avgStat.queue} />
-      <Card name="Average load" value={avgStat.load} />
+      <Card name="Average speed" value={avgStat.avgSeed} />
+      <Card name="Average delay" value={avgStat.avgDelay} />
+      <Card name="Average queue" value={avgStat.avgQueue} />
+      <Card name="Average load" value={avgStat.avgLoad} />
     </>
   );
 };

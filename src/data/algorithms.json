@@ -1,0 +1,36 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "name": "Double cookies"
+    },
+    {
+      "id": 2,
+      "name": "Encrypted token"
+    },
+    {
+      "id": 3,
+      "name": "Authorization header"
+    },
+    {
+      "id": 4,
+      "name": "Secure cookies"
+    },
+    {
+      "id": 5,
+      "name": "Form signing"
+    },
+    {
+      "id": 6,
+      "name": "Domain table"
+    },
+    {
+      "id": 7,
+      "name": "Client intermediary"
+    },
+    {
+      "id": 8,
+      "name": "Transmission assurance"
+    }
+  ]
+}

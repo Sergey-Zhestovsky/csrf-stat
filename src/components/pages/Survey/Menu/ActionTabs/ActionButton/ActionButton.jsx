@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip, Box } from '@material-ui/core';
 
 import styles from './action-button.module.scss';
 
@@ -11,19 +11,23 @@ const ActionButton = (props) => {
     active = false,
     disabled = false,
     onClick = () => {},
+    animation = false,
   } = props;
 
   return (
     <Tooltip title={tooltip}>
-      <IconButton
-        className={classnames(styles.actionButton, {
-          [styles.active]: active,
-        })}
-        disabled={disabled}
-        onClick={onClick}
-      >
-        <Icon />
-      </IconButton>
+      <Box className={styles.buttonWrapper}>
+        <IconButton
+          className={classnames(styles.actionButton, {
+            [styles.active]: active,
+          })}
+          disabled={disabled}
+          onClick={onClick}
+          disableTouchRipple={!animation}
+        >
+          <Icon />
+        </IconButton>
+      </Box>
     </Tooltip>
   );
 };

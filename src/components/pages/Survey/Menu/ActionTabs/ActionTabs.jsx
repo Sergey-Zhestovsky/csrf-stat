@@ -29,6 +29,7 @@ const ActionTabs = (props) => {
         icon={PlayArrow}
         tooltip="Start"
         active={actionStates.started === actionState}
+        disabled={actionStates.started === actionState}
         onClick={onChange.bind(null, actions.start)}
       />
       <ActionButton
@@ -42,19 +43,21 @@ const ActionTabs = (props) => {
         icon={Stop}
         tooltip="Stop"
         active={actionStates.stopped === actionState}
-        disabled={actionStates.notStarted === actionState}
+        disabled={actionStates.notStarted === actionState || actionStates.stopped === actionState}
         onClick={onChange.bind(null, actions.stop)}
       />
       <ActionButton
         icon={Save}
         tooltip="Save result"
-        disabled={withResults}
+        disabled={!withResults}
+        animation={true}
         onClick={onChange.bind(null, actions.save)}
       />
       <ActionButton
         icon={Close}
         tooltip="Clear result"
-        disabled={withResults}
+        disabled={!withResults}
+        animation={true}
         onClick={onChange.bind(null, actions.clean)}
       />
     </Box>

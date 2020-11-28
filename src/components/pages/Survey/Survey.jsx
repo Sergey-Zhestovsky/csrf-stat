@@ -1,115 +1,76 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Menu, { actionStates, actions } from './Menu/Menu';
-import DataView, { chartModes } from './DataView/DataView';
+import DataView from './DataView/DataView';
+import SurveyDataset from '../../../api/models/SurveyDataset';
+import chartModes from '../../../data/chart-modes.json';
+import { list as algorithmList } from '../../../data/algorithms.json';
+import { list as environmentList } from '../../../data/environments.json';
 
-const algorithmList = [
-  {
-    id: 1,
-    name: 'Double cookies',
-  },
-  {
-    id: 2,
-    name: 'Encrypted token',
-  },
-  {
-    id: 3,
-    name: 'Authorization header',
-  },
-  {
-    id: 4,
-    name: 'Secure cookies',
-  },
-  {
-    id: 5,
-    name: 'Form signing',
-  },
-  {
-    id: 6,
-    name: 'Domain table',
-  },
-  {
-    id: 7,
-    name: 'Client intermediary',
-  },
-  {
-    id: 8,
-    name: 'Transmission assurance',
-  },
-];
-
-const environments = [
-  {
-    id: 1,
-    name: 'Small',
-  },
-  {
-    id: 2,
-    name: 'Big',
-  },
-  {
-    id: 3,
-    name: 'Mixed',
-  },
-  {
-    id: 4,
-    name: 'Logic',
-  },
-  {
-    id: 5,
-    name: 'Real',
-  },
-];
-
-const surveyResults = [
-  {
-    id: 1,
-    time: 0.12553,
-    delay: 0.12553,
-    queue: 0.12553,
-    load: 0.12553,
-  },
-];
-
-const chartData = [
-  [1, 5],
-  [2, 8],
-  [3, 45],
-  [4, 12],
-  [5, 46],
-  [6, 32],
-];
-
-const avgStat = {
-  speed: 123,
-  delay: 341,
-  queue: 12,
-  load: 723,
-};
+const getRandomResult = (id) => ({
+  id,
+  speed: Math.round(Math.random() * 40),
+  delay: Math.round(Math.random() * 70),
+  queue: Math.round(Math.random() * 23),
+  load: Math.round(Math.random() * 250),
+});
 
 const Survey = (props) => {
-  const chosen = 1;
-  const tr = new Array(100).fill(surveyResults[0]);
+  const [surveyDataset, setSurveyDataset] = useState(
+    new SurveyDataset(new Array(25).fill().map(() => getRandomResult()))
+  );
+  const [chartMode, setChartMode] = useState(chartModes.speed);
+  const [chosenAlgorithm, setChosenAlgorithm] = useState(algorithmList[0].id);
+  const [chosenEnvironment, setChosenEnvironment] = useState(environmentList[0].id);
+  const [currentActionState, setCurrentActionState] = useState(actionStates.notStarted);
+
+  const memorizedChartData = useMemo(() => surveyDataset.getChartData(chartMode), [
+    surveyDataset.dataset,
+    chartMode,
+  ]);
+
+  const saveData = () => {};
+
+  const cleanData = () => {
+    setCurrentActionState(actionStates.notStarted);
+  };
+
+  const handleChangeAction = (action) => {
+    switch (action) {
+      case actions.start:
+        return setCurrentActionState(actionStates.started);
+      case actions.pause:
+        return setCurrentActionState(actionStates.paused);
+      case actions.stop:
+        return setCurrentActionState(actionStates.stopped);
+      case actions.save:
+        return saveData();
+      case actions.clean:
+        return cleanData();
+      default:
+        return;
+    }
+  };
 
   return (
     <>
       <Menu
         algorithmList={algorithmList}
-        currentAlgorithm={1}
-        onAlgorithmChange={() => null}
-        environmentList={environments}
-        currentEnvironment={1}
-        onEnvironmentChange={() => null}
-        currentActionState={actionStates.started}
-        withResults={false}
-        onActinChange={() => null}
+        currentAlgorithm={chosenAlgorithm}
+        onAlgorithmChange={setChosenAlgorithm}
+        environmentList={environmentList}
+        currentEnvironment={chosenEnvironment}
+        onEnvironmentChange={setChosenEnvironment}
+        currentActionState={currentActionState}
+        withResults={!surveyDataset.isEmpty()}
+        onActinChange={handleChangeAction}
       />
       <DataView
-        results={tr}
-        chartData={chartData}
-        statistic={avgStat}
+        results={surveyDataset.dataset}
+        chartData={memorizedChartData}
+        statistic={surveyDataset.statistics}
         title={algorithmList[0].name}
-        chartMode={chartModes.speed}
-        onChangeChartMode={() => null}
+        chartMode={chartMode}
+        onChangeChartMode={setChartMode}
       />
     </>
   );

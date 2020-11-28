@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Box, Typography } from '@material-ui/core';
 import Table from './Table/Table';
-import Statistics, { chartModes } from './Statistics/Statistics';
+import Statistics from './Statistics/Statistics';
 
 import styles from './data-view.module.scss';
 
@@ -36,4 +36,3 @@ const DataView = (props) => {
 };
 
 export default DataView;
-export { chartModes };

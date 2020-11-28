@@ -21,7 +21,7 @@ const Table = (props) => {
       return (
         <TableRow hover tabIndex={-1} key={row.id}>
           <TableCell>{i + 1}</TableCell>
-          <TableCell>{row.time}</TableCell>
+          <TableCell>{row.speed}</TableCell>
           <TableCell>{row.delay}</TableCell>
           <TableCell>{row.queue}</TableCell>
           <TableCell>{row.load}</TableCell>
@@ -37,7 +37,7 @@ const Table = (props) => {
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell>Time</TableCell>
+              <TableCell>Speed</TableCell>
               <TableCell>Delay</TableCell>
               <TableCell>Queue</TableCell>
               <TableCell>Load</TableCell>

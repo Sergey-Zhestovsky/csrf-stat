@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Box } from '@material-ui/core';
 import Metrics from './Metrics/Metrics';
-import Chart, { chartModes } from './Chart/Chart';
+import Chart from './Chart/Chart';
 
 const Statistics = (props) => {
   const { chartMode, onChangeMode, statistics, data } = props;
@@ -17,4 +17,3 @@ const Statistics = (props) => {
 };
 
 export default Statistics;
-export { chartModes };

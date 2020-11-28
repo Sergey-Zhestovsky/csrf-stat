@@ -1,15 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 import { ButtonGroup, Button } from '@material-ui/core';
+import chartModes from '../../../../../../../data/chart-modes.json';
 
 import styles from './chart-controller.module.scss';
-
-export const chartModes = {
-  speed: 'speed',
-  delay: 'delay',
-  queue: 'queue',
-  load: 'load',
-};
 
 const ChartController = (props) => {
   const { mode, onChange = () => {} } = props;
