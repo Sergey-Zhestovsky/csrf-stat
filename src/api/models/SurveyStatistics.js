@@ -13,7 +13,7 @@ class SurveyStatistic {
     let avgQueue = 0;
     let avgLoad = 0;
 
-    rowDataset.map((data) => {
+    rowDataset.forEach((data) => {
       avgSeed += data.speed ?? 0;
       avgDelay += data.delay ?? 0;
       avgQueue += data.queue ?? 0;

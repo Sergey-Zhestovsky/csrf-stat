@@ -11,13 +11,17 @@ const DataView = (props) => {
     chartData = [],
     statistic = {},
     title,
+    subtitle,
     chartMode,
     onChangeChartMode,
   } = props;
 
   return (
     <Container>
-      <Typography className={styles.title}>{title}</Typography>
+      <Box className={styles.titleContainer}>
+        <Typography className={styles.title}>{title}</Typography>
+        <Typography className={styles.subtitle}>{`<${subtitle}>`}</Typography>
+      </Box>
       <Box className={styles.wrapper}>
         <Box className={styles.col}>
           <Table rows={results} />

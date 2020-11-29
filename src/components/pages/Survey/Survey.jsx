@@ -1,47 +1,70 @@
 import React, { useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Menu, { actionStates, actions } from './Menu/Menu';
 import DataView from './DataView/DataView';
-import SurveyDataset from '../../../api/models/SurveyDataset';
+import HistoryService from '../../../api/services/HistoryService';
+import QueryService from '../../../api/services/QueryService';
+import { rootActions } from '../../../api/storage';
 import chartModes from '../../../data/chart-modes.json';
 import { list as algorithmList } from '../../../data/algorithms.json';
 import { list as environmentList } from '../../../data/environments.json';
 
-const getRandomResult = (id) => ({
-  id,
-  speed: Math.round(Math.random() * 40),
-  delay: Math.round(Math.random() * 70),
-  queue: Math.round(Math.random() * 23),
-  load: Math.round(Math.random() * 250),
-});
+const {
+  testSuiteActions: { useActions },
+} = rootActions;
 
 const Survey = (props) => {
-  const [surveyDataset, setSurveyDataset] = useState(
-    new SurveyDataset(new Array(25).fill().map(() => getRandomResult()))
-  );
+  const { algorithm, environment, surveyDataset } = useSelector((state) => state.testSuite);
+  const { setAlgorithm, setEnvironment, append, clear } = useActions();
+
   const [chartMode, setChartMode] = useState(chartModes.speed);
-  const [chosenAlgorithm, setChosenAlgorithm] = useState(algorithmList[0].id);
-  const [chosenEnvironment, setChosenEnvironment] = useState(environmentList[0].id);
   const [currentActionState, setCurrentActionState] = useState(actionStates.notStarted);
+  const [saved, setSaved] = useState(true);
 
   const memorizedChartData = useMemo(() => surveyDataset.getChartData(chartMode), [
     surveyDataset.dataset,
     chartMode,
   ]);
 
-  const saveData = () => {};
+  const queryService = useMemo(() => new QueryService(algorithm.id, environment.id), [
+    algorithm,
+    environment,
+  ]);
+
+  const start = () => {
+    setSaved(false);
+    queryService.start(append);
+    setCurrentActionState(actionStates.started);
+  };
+
+  const pause = () => {
+    queryService.stop();
+    setCurrentActionState(actionStates.paused);
+  };
+
+  const stop = () => {
+    queryService.stop();
+    setCurrentActionState(actionStates.stopped);
+  };
+
+  const saveData = () => {
+    HistoryService.save(algorithm, environment, surveyDataset);
+    setSaved(true);
+  };
 
   const cleanData = () => {
+    clear();
     setCurrentActionState(actionStates.notStarted);
   };
 
   const handleChangeAction = (action) => {
     switch (action) {
       case actions.start:
-        return setCurrentActionState(actionStates.started);
+        return start();
       case actions.pause:
-        return setCurrentActionState(actionStates.paused);
+        return pause();
       case actions.stop:
-        return setCurrentActionState(actionStates.stopped);
+        return stop();
       case actions.save:
         return saveData();
       case actions.clean:
@@ -55,20 +78,23 @@ const Survey = (props) => {
     <>
       <Menu
         algorithmList={algorithmList}
-        currentAlgorithm={chosenAlgorithm}
-        onAlgorithmChange={setChosenAlgorithm}
+        currentAlgorithm={algorithm.id}
+        onAlgorithmChange={setAlgorithm}
         environmentList={environmentList}
-        currentEnvironment={chosenEnvironment}
-        onEnvironmentChange={setChosenEnvironment}
+        currentEnvironment={environment.id}
+        onEnvironmentChange={setEnvironment}
         currentActionState={currentActionState}
         withResults={!surveyDataset.isEmpty()}
         onActinChange={handleChangeAction}
+        saved={saved}
+        disabled={currentActionState !== actionStates.notStarted}
       />
       <DataView
         results={surveyDataset.dataset}
         chartData={memorizedChartData}
         statistic={surveyDataset.statistics}
-        title={algorithmList[0].name}
+        title={algorithm.name}
+        subtitle={environment.name}
         chartMode={chartMode}
         onChangeChartMode={setChartMode}
       />

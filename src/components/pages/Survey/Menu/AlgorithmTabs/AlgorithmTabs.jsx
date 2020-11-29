@@ -4,9 +4,9 @@ import { Typography, Tabs, Tab, Container, Box } from '@material-ui/core';
 import styles from './algorithm-tabs.module.scss';
 
 const AlgorithmTabs = (props) => {
-  const { algorithmList = [], algorithm, onChange = () => {} } = props;
+  const { algorithmList = [], algorithm, onChange = () => {}, disabled = false } = props;
 
-  const getTabs = (list, changeHandler) => {
+  const getTabs = (list, changeHandler, disabledTabs) => {
     return list.map((el) => (
       <Tab
         key={el.id}
@@ -14,6 +14,7 @@ const AlgorithmTabs = (props) => {
         label={el.name}
         value={el.id}
         onClick={changeHandler.bind(null, el.id)}
+        disabled={disabledTabs}
       />
     ));
   };
@@ -30,7 +31,7 @@ const AlgorithmTabs = (props) => {
           scrollButtons="auto"
           value={algorithm}
         >
-          {getTabs(algorithmList, onChange)}
+          {getTabs(algorithmList, onChange, disabled)}
         </Tabs>
       </Container>
     </Box>

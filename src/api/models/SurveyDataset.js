@@ -3,9 +3,9 @@ import SurveyStatistic from './SurveyStatistics';
 import chartModes from '../../data/chart-modes.json';
 
 class SurveyDataset {
-  constructor(dataset = []) {
+  constructor(dataset = [], statistics) {
     this.dataset = dataset.map((el) => new QueryResult(el));
-    this.statistics = SurveyStatistic.calculate(this.dataset);
+    this.statistics = statistics ?? SurveyStatistic.calculate(this.dataset);
   }
 
   append(queryResult) {
@@ -17,21 +17,9 @@ class SurveyDataset {
     return this.dataset.length === 0;
   }
 
-  // getSpeedChart() {
-  //   return this.dataset.map((el, i) => [i + 1, el.speed]);
-  // }
-
-  // getDelayChart() {
-  //   return this.dataset.map((el, i) => [i + 1, el.delay]);
-  // }
-
-  // getQueueChart() {
-  //   return this.dataset.map((el, i) => [i + 1, el.queue]);
-  // }
-
-  // getLoadChart() {
-  //   return this.dataset.map((el, i) => [i + 1, el.load]);
-  // }
+  drop() {
+    return new SurveyDataset([]);
+  }
 
   generateChartData(fieldName) {
     return this.dataset.map((el, i) => [i + 1, el[fieldName]]);

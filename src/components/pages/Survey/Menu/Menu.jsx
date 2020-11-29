@@ -17,6 +17,8 @@ const Menu = (props) => {
     currentActionState,
     withResults,
     onActinChange,
+    saved,
+    disabled,
   } = props;
 
   return (
@@ -25,17 +27,20 @@ const Menu = (props) => {
         algorithmList={algorithmList}
         algorithm={currentAlgorithm}
         onChange={onAlgorithmChange}
+        disabled={disabled}
       />
       <Container className={styles.tools}>
         <EnvironmentTabs
           environmentList={environmentList}
           environment={currentEnvironment}
           onChange={onEnvironmentChange}
+          disabled={disabled}
         />
         <ActionTabs
           actionState={currentActionState}
           withResults={withResults}
           onChange={onActinChange}
+          saved={saved}
         />
       </Container>
     </Paper>

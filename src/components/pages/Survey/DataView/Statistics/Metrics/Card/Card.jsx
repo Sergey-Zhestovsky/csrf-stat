@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box, Grid, Paper } from '@material-ui/core';
+import { Typography, Grid, Paper } from '@material-ui/core';
 
 import styles from './card.module.scss';
 
