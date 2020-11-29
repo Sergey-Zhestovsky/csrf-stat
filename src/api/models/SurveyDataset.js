@@ -11,6 +11,7 @@ class SurveyDataset {
   append(queryResult) {
     this.dataset = [...this.dataset, new QueryResult(queryResult)];
     this.statistics = this.statistics.append(queryResult);
+    return this;
   }
 
   isEmpty() {

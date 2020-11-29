@@ -21,11 +21,11 @@ class SurveyStatistic {
     });
 
     return new SurveyStatistic({
-      avgSeed: avgSeed / rowDataset.length,
-      avgDelay: avgDelay / rowDataset.length,
-      avgQueue: avgQueue / rowDataset.length,
-      avgLoad: avgLoad / rowDataset.length,
-      iterator: rowDataset.length,
+      avgSeed: avgSeed / rowDataset.length || 0,
+      avgDelay: avgDelay / rowDataset.length || 0,
+      avgQueue: avgQueue / rowDataset.length || 0,
+      avgLoad: avgLoad / rowDataset.length || 0,
+      iterator: rowDataset.length || 0,
     });
   }
 

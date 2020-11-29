@@ -9,18 +9,10 @@ export const ACTIONS = {
   DROP_TEST: 'TEST_SUITE::DROP_TEST',
 };
 
-const getRandomResult = (id) => ({
-  id,
-  speed: Math.round(Math.random() * 40),
-  delay: Math.round(Math.random() * 70),
-  queue: Math.round(Math.random() * 23),
-  load: Math.round(Math.random() * 250),
-});
-
 const initialState = {
   algorithm: algorithmList[0],
   environment: environmentList[0],
-  surveyDataset: new SurveyDataset(new Array(25).fill().map(() => getRandomResult())),
+  surveyDataset: new SurveyDataset([]),
 };
 
 const testSuiteReducer = (state = initialState, action) => {

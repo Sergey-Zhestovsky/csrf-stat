@@ -92,7 +92,7 @@ const Survey = (props) => {
       <DataView
         results={surveyDataset.dataset}
         chartData={memorizedChartData}
-        statistic={surveyDataset.statistics}
+        statistic={surveyDataset.statistics || {}}
         title={algorithm.name}
         subtitle={environment.name}
         chartMode={chartMode}

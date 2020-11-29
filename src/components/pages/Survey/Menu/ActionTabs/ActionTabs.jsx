@@ -40,7 +40,7 @@ const ActionTabs = (props) => {
   };
 
   const startHandler = () => {
-    if (actionState !== actionStates.stopped) return onChange(actions.start);
+    if (actionState !== actionStates.stopped || !withResults) return onChange(actions.start);
     return setRestartAlert(true);
   };
 
