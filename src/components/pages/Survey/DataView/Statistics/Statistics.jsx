@@ -10,7 +10,7 @@ const Statistics = (props) => {
     <Box>
       <Grid container spacing={4}>
         <Metrics avgStat={statistics} />
-        {/* <Chart data={data} mode={chartMode} onChangeMode={onChangeMode} /> */}
+        <Chart data={data} mode={chartMode} onChangeMode={onChangeMode} />
       </Grid>
     </Box>
   );

@@ -1,4 +1,14 @@
 {
+  "variant": {
+    "doubleCookies": 1,
+    "encryptedToken": 2,
+    "authorizationHeader": 3,
+    "secureCookies": 4,
+    "formSigning": 5,
+    "domainTable": 6,
+    "clientIntermediary": 7,
+    "transmissionAssurance": 8
+  },
   "list": [
     {
       "id": 1,

@@ -8,12 +8,19 @@ module.exports = {
     'jest/globals': true,
   },
 
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:jest/recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:jest/recommended',
+    'prettier',
+  ],
 
   parserOptions: {
     ecmaVersion: 11,
     sourceType: 'module',
   },
+
+  parser: 'babel-eslint',
 
   rules: {
     'accessor-pairs': OFF,

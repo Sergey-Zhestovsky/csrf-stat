@@ -2,7 +2,7 @@ import React from 'react';
 import { Paper, Container } from '@material-ui/core';
 import AlgorithmTabs from './AlgorithmTabs/AlgorithmTabs';
 import EnvironmentTabs from './EnvironmentTabs/EnvironmentTabs';
-import ActionTabs, { actionStates, actions } from './ActionTabs/ActionTabs';
+import ActionTabs, { actions } from './ActionTabs/ActionTabs';
 
 import styles from './menu.module.scss';
 
@@ -48,4 +48,4 @@ const Menu = (props) => {
 };
 
 export default Menu;
-export { actionStates, actions };
+export { actions };

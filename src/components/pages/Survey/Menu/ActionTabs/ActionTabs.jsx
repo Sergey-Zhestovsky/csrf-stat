@@ -3,15 +3,9 @@ import { Box } from '@material-ui/core';
 import { PlayArrow, Stop, Pause, Save, Close } from '@material-ui/icons';
 import Alert from '../../../../parts/Alert/Alert';
 import ActionButton from './ActionButton/ActionButton';
+import actionStates from '../../../../../data/test-action-states.json';
 
 import styles from './action-tabs.module.scss';
-
-export const actionStates = {
-  notStarted: 'not started',
-  started: 'started',
-  paused: 'paused',
-  stopped: 'stopped',
-};
 
 export const actions = {
   start: 'start',

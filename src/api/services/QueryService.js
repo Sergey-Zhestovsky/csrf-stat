@@ -1,19 +1,25 @@
-const getRandomResult = (id) => ({
-  id,
-  speed: Math.round(Math.random() * 40),
-  delay: Math.round(Math.random() * 70),
-  queue: Math.round(Math.random() * 23),
-  load: Math.round(Math.random() * 250),
-});
+import AlgorithmService from './AlgorithmService';
+import EnvironmentService from './EnvironmentService';
+
+const environmentService = new EnvironmentService();
 
 class QueryService {
   constructor(algorithmId, environmentId) {
+    this.queryAlgorithm = AlgorithmService.getQueryByAlgorithmId(algorithmId);
+    this.withEnvironment = environmentService.getByEnvironmentId(environmentId);
     this.timeout = null;
   }
 
-  start(callback, delay = 50) {
-    this.timeout = setInterval(() => {
-      callback(getRandomResult());
+  recreate(algorithmId, environmentId) {
+    this.stop();
+    return new QueryService(algorithmId, environmentId);
+  }
+
+  start(callback, delay = 150) {
+    this.timeout = setInterval(async () => {
+      if (!this.queryAlgorithm || !this.withEnvironment) return;
+      const data = await this.queryAlgorithm(this.withEnvironment());
+      callback(data);
     }, delay);
   }
 

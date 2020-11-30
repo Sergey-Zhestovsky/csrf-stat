@@ -1,4 +1,11 @@
 {
+  "variant": {
+    "small": 1,
+    "big": 2,
+    "mixed": 3,
+    "logic": 4,
+    "real": 5
+  },
   "list": [
     {
       "id": 1,

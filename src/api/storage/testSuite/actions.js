@@ -21,6 +21,15 @@ export const setEnvironment = (environmentId) => {
   };
 };
 
+export const setActionState = (actionState) => {
+  return (dispatch) => {
+    dispatch({
+      type: ACTIONS.SET_ACTION_STATE,
+      actionState,
+    });
+  };
+};
+
 export const append = (queryResult) => {
   return (dispatch) => {
     dispatch({
@@ -46,5 +55,6 @@ export const useActions = () => {
     setEnvironment: (environmentId) => dispatch(setEnvironment(environmentId)),
     append: (queryResult) => dispatch(append(queryResult)),
     clear: () => dispatch(clear()),
+    setActionState: (actionState) => dispatch(setActionState(actionState)),
   };
 };

@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Menu, { actionStates, actions } from './Menu/Menu';
+import Menu, { actions } from './Menu/Menu';
 import DataView from './DataView/DataView';
 import HistoryService from '../../../api/services/HistoryService';
 import QueryService from '../../../api/services/QueryService';
@@ -8,25 +8,28 @@ import { rootActions } from '../../../api/storage';
 import chartModes from '../../../data/chart-modes.json';
 import { list as algorithmList } from '../../../data/algorithms.json';
 import { list as environmentList } from '../../../data/environments.json';
+import actionStates from '../../../data/test-action-states.json';
 
 const {
   testSuiteActions: { useActions },
 } = rootActions;
 
 const Survey = (props) => {
-  const { algorithm, environment, surveyDataset } = useSelector((state) => state.testSuite);
-  const { setAlgorithm, setEnvironment, append, clear } = useActions();
+  const { algorithm, environment, surveyDataset, actionState } = useSelector(
+    (state) => state.testSuite
+  );
+  const { setAlgorithm, setEnvironment, append, clear, setActionState } = useActions();
 
   const [chartMode, setChartMode] = useState(chartModes.speed);
-  const [currentActionState, setCurrentActionState] = useState(actionStates.notStarted);
   const [saved, setSaved] = useState(true);
+  const [queryServiceInstance] = useState(new QueryService());
 
   const memorizedChartData = useMemo(() => surveyDataset.getChartData(chartMode), [
     surveyDataset.dataset,
     chartMode,
   ]);
 
-  const queryService = useMemo(() => new QueryService(algorithm.id, environment.id), [
+  const queryService = useMemo(() => queryServiceInstance.recreate(algorithm.id, environment.id), [
     algorithm,
     environment,
   ]);
@@ -34,17 +37,17 @@ const Survey = (props) => {
   const start = () => {
     setSaved(false);
     queryService.start(append);
-    setCurrentActionState(actionStates.started);
+    setActionState(actionStates.started);
   };
 
   const pause = () => {
     queryService.stop();
-    setCurrentActionState(actionStates.paused);
+    setActionState(actionStates.paused);
   };
 
   const stop = () => {
     queryService.stop();
-    setCurrentActionState(actionStates.stopped);
+    setActionState(actionStates.stopped);
   };
 
   const saveData = () => {
@@ -54,7 +57,7 @@ const Survey = (props) => {
 
   const cleanData = () => {
     clear();
-    setCurrentActionState(actionStates.notStarted);
+    setActionState(actionStates.notStarted);
   };
 
   const handleChangeAction = (action) => {
@@ -74,6 +77,12 @@ const Survey = (props) => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      pause();
+    };
+  }, []);
+
   return (
     <>
       <Menu
@@ -83,11 +92,11 @@ const Survey = (props) => {
         environmentList={environmentList}
         currentEnvironment={environment.id}
         onEnvironmentChange={setEnvironment}
-        currentActionState={currentActionState}
+        currentActionState={actionState}
         withResults={!surveyDataset.isEmpty()}
         onActinChange={handleChangeAction}
         saved={saved}
-        disabled={currentActionState !== actionStates.notStarted}
+        disabled={actionState !== actionStates.notStarted}
       />
       <DataView
         results={surveyDataset.dataset}

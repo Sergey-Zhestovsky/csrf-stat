@@ -4,12 +4,15 @@ import chartModes from '../../data/chart-modes.json';
 
 class SurveyDataset {
   constructor(dataset = [], statistics) {
-    this.dataset = dataset.map((el) => new QueryResult(el));
+    this.dataset = dataset.map((el, i) => new QueryResult({ ...el, position: i + 1 }));
     this.statistics = statistics ?? SurveyStatistic.calculate(this.dataset);
   }
 
   append(queryResult) {
-    this.dataset = [...this.dataset, new QueryResult(queryResult)];
+    this.dataset = [
+      ...this.dataset,
+      new QueryResult({ ...queryResult, position: this.dataset.length + 1 }),
+    ];
     this.statistics = this.statistics.append(queryResult);
     return this;
   }
@@ -28,6 +31,8 @@ class SurveyDataset {
 
   getChartData(chartMode) {
     switch (chartMode) {
+      case chartModes.off:
+        return [];
       case chartModes.speed:
         return this.generateChartData('speed');
       case chartModes.delay:

@@ -1,0 +1,10 @@
+{
+  "doubleCookies": "/double-cookies",
+  "encryptedToken": "encrypted-token",
+  "authorizationHeader": "authorization-header",
+  "secureCookies": "secure-cookies",
+  "formSigning": "form-signing",
+  "domainTable": "domain-table",
+  "clientIntermediary": "client-intermediary",
+  "transmissionAssurance": "transmission-assurance"
+}

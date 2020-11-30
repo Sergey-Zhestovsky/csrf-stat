@@ -11,6 +11,13 @@ const ChartController = (props) => {
   return (
     <ButtonGroup variant="outlined" color="primary">
       <Button
+        className={classnames(styles.button, { [styles.active]: mode === chartModes.off })}
+        disabled={mode === chartModes.off}
+        onClick={onChange.bind(null, chartModes.off)}
+      >
+        Off
+      </Button>
+      <Button
         className={classnames(styles.button, { [styles.active]: mode === chartModes.speed })}
         disabled={mode === chartModes.speed}
         onClick={onChange.bind(null, chartModes.speed)}
