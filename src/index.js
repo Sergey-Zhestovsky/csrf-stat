@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { rootReducer } from './api/storage';
 
+import './assets/css/font.scss';
 import './assets/css/index.scss';
 
 const store = createStore(rootReducer, applyMiddleware(thunk.withExtraArgument({})));
