@@ -1,0 +1,45 @@
+$fontName: 'Campton';
+$folderPath: '/fonts/';
+
+@mixin fontGenerator($weight, $style, $fileName) {
+  font-family: $fontName;
+  font-weight: $weight;
+  font-style: $style;
+  src: url($folderPath + $fileName);
+}
+
+@font-face {
+  @include fontGenerator(100, normal, 'Campton-Thin.otf');
+}
+
+@font-face {
+  @include fontGenerator(200, normal, 'Campton-ExtraLight.otf');
+}
+
+@font-face {
+  @include fontGenerator(300, normal, 'Campton-Light.otf');
+}
+
+@font-face {
+  @include fontGenerator(400, normal, 'Campton-Book.otf');
+}
+
+@font-face {
+  @include fontGenerator(500, normal, 'Campton-Medium.otf');
+}
+
+@font-face {
+  @include fontGenerator(600, normal, 'Campton-SemiBold.otf');
+}
+
+@font-face {
+  @include fontGenerator(700, normal, 'Campton-Bold.otf');
+}
+
+@font-face {
+  @include fontGenerator(800, normal, 'Campton-ExtraBold.otf');
+}
+
+@font-face {
+  @include fontGenerator(900, normal, 'Campton-Black.otf');
+}
