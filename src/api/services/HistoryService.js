@@ -11,6 +11,7 @@ class HistoryService {
       environment,
       dataset: surveyDataset.dataset,
       statistics: surveyDataset.statistics,
+      date: Date.now(),
     });
   }
 
@@ -25,6 +26,7 @@ class HistoryService {
         algorithm: el.algorithm,
         environment: el.environment,
         statistics: el.statistics,
+        date: el.date,
       });
     }
 
@@ -37,6 +39,7 @@ class HistoryService {
       algorithm: result.algorithm,
       environment: result.environment,
       surveyDataset: new SurveyDataset(result.dataset, new SurveyStatistics(result.statistics)),
+      date: result.date,
     };
   }
 }

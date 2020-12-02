@@ -8,6 +8,10 @@ class SurveyDataset {
     this.statistics = statistics ?? SurveyStatistic.calculate(this.dataset);
   }
 
+  get Size() {
+    return this.dataset.length;
+  }
+
   append(queryResult) {
     this.dataset = [
       ...this.dataset,

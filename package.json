@@ -15,6 +15,7 @@
     "d3-shape": "~2.0.0",
     "localforage": "^1.9.0",
     "localforage-getitems": "^1.4.2",
+    "moment": "~2.29.1",
     "nanoid": "^3.1.18",
     "node-sass": "~4.14.1",
     "react": "^16.13.1",
