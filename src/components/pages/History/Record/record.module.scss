@@ -1,10 +1,14 @@
 .container {
-  display: flex;
   margin-bottom: 2rem;
-  padding: 1rem 2rem;
 }
 
-.describe {
+.prevue {
+  display: flex;
+  padding: 1rem 2rem;
+
+  &.open {
+    border-bottom: 2px solid #00000017;
+  }
 }
 
 .toolbar {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Paper, Grid } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { Chart as ReactChart } from 'react-charts';
 import ChartController from './ChartController/ChartController';
 
@@ -23,21 +23,14 @@ const Chart = (props) => {
   const { data = [], mode, onChangeMode } = props;
 
   return (
-    <Grid item xs={12}>
-      <Paper className={styles.wrapper}>
-        <Box className={styles.chart}>
-          <ReactChart
-            data={[{ data }]}
-            series={series}
-            axes={axes}
-            getSeriesStyle={getSeriesStyle}
-          />
-        </Box>
-        <Box className={styles.buttonGroupWrapper}>
-          <ChartController mode={mode} onChange={onChangeMode} />
-        </Box>
-      </Paper>
-    </Grid>
+    <Box>
+      <Box className={styles.chart}>
+        <ReactChart data={[{ data }]} series={series} axes={axes} getSeriesStyle={getSeriesStyle} />
+      </Box>
+      <Box className={styles.buttonGroupWrapper}>
+        <ChartController mode={mode} onChange={onChangeMode} />
+      </Box>
+    </Box>
   );
 };
 

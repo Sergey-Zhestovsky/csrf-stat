@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { ButtonGroup, Button } from '@material-ui/core';
-import chartModes from '../../../../../../../data/chart-modes.json';
+import chartModes from '../../../../data/chart-modes.json';
 
 import styles from './chart-controller.module.scss';
 

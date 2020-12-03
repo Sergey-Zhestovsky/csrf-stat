@@ -1,10 +1,11 @@
 class SurveyStatistic {
-  constructor({ avgSeed, avgDelay, avgQueue, avgLoad, iterator }) {
+  constructor({ iterator, avgSeed, avgDelay, avgQueue, avgLoad }) {
+    this.iterator = iterator;
+
     this.avgSeed = avgSeed;
     this.avgDelay = avgDelay;
     this.avgQueue = avgQueue;
     this.avgLoad = avgLoad;
-    this.iterator = iterator;
   }
 
   static calculate(rowDataset = []) {
@@ -47,6 +48,119 @@ class SurveyStatistic {
 
   newAvg(oldAvg, newValue, iterator = this.iterator) {
     return (oldAvg * iterator + newValue) / (iterator + 1);
+  }
+
+  static getMinMax(dataset = []) {
+    if (dataset.length === 0) {
+      return {
+        minSpeed: 0,
+        maxSpeed: 0,
+        minDelay: 0,
+        maxDelay: 0,
+        minQueue: 0,
+        maxQueue: 0,
+        minLoad: 0,
+        maxLoad: 0,
+      };
+    }
+
+    const result = {
+      minSpeed: dataset[0].speed,
+      maxSpeed: dataset[0].speed,
+
+      minDelay: dataset[0].delay,
+      maxDelay: dataset[0].delay,
+
+      minQueue: dataset[0].queue,
+      maxQueue: dataset[0].queue,
+
+      minLoad: dataset[0].load,
+      maxLoad: dataset[0].load,
+    };
+
+    dataset.forEach((data) => {
+      if (data.speed < result.minSpeed) result.minSpeed = data.speed;
+      if (data.speed > result.maxSpeed) result.minSpeed = data.speed;
+
+      if (data.delay < result.minDelay) result.minDelay = data.delay;
+      if (data.delay > result.maxDelay) result.maxDelay = data.delay;
+
+      if (data.queue < result.minQueue) result.minQueue = data.queue;
+      if (data.queue > result.maxQueue) result.maxQueue = data.queue;
+
+      if (data.load < result.minLoad) result.minLoad = data.load;
+      if (data.load > result.maxLoad) result.maxLoad = data.load;
+    });
+
+    return result;
+  }
+
+  static calcStandardDeviation(dataset = [], statistics) {
+    const variance = {
+      speed: 0,
+      delay: 0,
+      queue: 0,
+      load: 0,
+    };
+
+    dataset.forEach((data) => {
+      variance.speed += Math.pow((data.speed, statistics.avgSeed), 2);
+      variance.delay += Math.pow((data.delay, statistics.avgDelay), 2);
+      variance.queue += Math.pow((data.queue, statistics.avgQueue), 2);
+      variance.load += Math.pow((data.load, statistics.avgLoad), 2);
+    });
+
+    return {
+      varianceSpeed: variance.speed,
+      standardDeviationSeed: Math.sqrt(variance.seed / statistics.iterator) || 0,
+
+      varianceDelay: variance.delay,
+      standardDeviationDelay: Math.sqrt(variance.delay / statistics.iterator) || 0,
+
+      varianceQueue: variance.queue,
+      standardDeviationQueue: Math.sqrt(variance.queue / statistics.iterator) || 0,
+
+      varianceLoad: variance.load,
+      standardDeviationLoad: Math.sqrt(variance.load / statistics.iterator) || 0,
+    };
+  }
+
+  static completeStatistics(dataset, statistics) {
+    if (!statistics) statistics = SurveyStatistic.calculate(this.dataset);
+
+    const minMax = SurveyStatistic.getMinMax(dataset);
+    const standardDeviation = SurveyStatistic.calcStandardDeviation(dataset, statistics);
+
+    return {
+      speed: {
+        min: minMax.minSpeed,
+        max: minMax.maxSpeed,
+        avg: statistics.avgSeed,
+        variance: standardDeviation.varianceSpeed,
+        standardDeviation: standardDeviation.standardDeviationSeed,
+      },
+      delay: {
+        min: minMax.minDelay,
+        max: minMax.maxDelay,
+        avg: statistics.avgDelay,
+        variance: standardDeviation.varianceDelay,
+        standardDeviation: standardDeviation.standardDeviationDelay,
+      },
+      queue: {
+        min: minMax.minQueue,
+        max: minMax.maxQueue,
+        avg: statistics.avgQueue,
+        variance: standardDeviation.varianceQueue,
+        standardDeviation: standardDeviation.standardDeviationQueue,
+      },
+      load: {
+        min: minMax.minLoad,
+        max: minMax.maxLoad,
+        avg: statistics.avgLoad,
+        variance: standardDeviation.varianceLoad,
+        standardDeviation: standardDeviation.standardDeviationLoad,
+      },
+    };
   }
 }
 

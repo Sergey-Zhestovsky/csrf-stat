@@ -100,10 +100,10 @@ const Survey = (props) => {
       />
       <DataView
         results={surveyDataset.dataset}
-        chartData={memorizedChartData}
         statistic={surveyDataset.statistics || {}}
         title={algorithm.name}
         subtitle={environment.name}
+        chartData={memorizedChartData}
         chartMode={chartMode}
         onChangeChartMode={setChartMode}
       />

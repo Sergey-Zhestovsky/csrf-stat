@@ -21,6 +21,10 @@ class SurveyDataset {
     return this;
   }
 
+  getCompleteStatistics() {
+    return SurveyStatistic.completeStatistics(this.dataset, this.statistics);
+  }
+
   isEmpty() {
     return this.dataset.length === 0;
   }
