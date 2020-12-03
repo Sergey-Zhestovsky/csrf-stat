@@ -1,0 +1,42 @@
+.titleContainer {
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #444444;
+
+  &::first-letter {
+    color: #f50357;
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  margin-left: 1rem;
+  font-weight: 600;
+  color: #444444;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.col {
+  width: 50%;
+  flex-shrink: 0;
+  border-right: 2px solid #00000017;
+  padding: 1rem 2rem;
+
+  &:first-child {
+    padding-left: unset;
+  }
+
+  &:last-child {
+    border-right: none;
+    padding-right: unset;
+  }
+}

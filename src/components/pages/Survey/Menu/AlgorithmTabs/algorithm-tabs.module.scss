@@ -1,0 +1,27 @@
+.methodWrapper {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #00000017;
+  }
+}
+
+.methodContainer {
+  display: flex;
+  align-items: center;
+}
+
+.tabs {
+  min-height: 64px;
+}
+
+.method {
+  text-transform: none;
+  min-height: 64px;
+}

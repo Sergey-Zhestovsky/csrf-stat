@@ -1,0 +1,32 @@
+.buttonWrapper {
+  display: inline-block;
+  position: relative;
+  margin: 0 0.8rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: calc(-0.8rem - 1px);
+    top: 15%;
+    bottom: 15%;
+    width: 2px;
+    background: #00000017;
+  }
+
+  &:last-child {
+    margin-right: 0;
+
+    &:before {
+      content: none;
+    }
+  }
+}
+
+.actionButton {
+  transition: all 0.125s;
+
+  &.active {
+    color: #3f51b5;
+    background: #3f51b512;
+  }
+}
