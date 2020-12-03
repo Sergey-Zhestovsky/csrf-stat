@@ -1,0 +1,6 @@
+{
+  "notStarted": "not started",
+  "started": "started",
+  "paused": "paused",
+  "stopped": "stopped"
+}
