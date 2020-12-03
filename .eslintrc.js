@@ -5,16 +5,22 @@ const ERROR = 2;
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
     'jest/globals': true,
   },
 
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:jest/recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:jest/recommended',
+    'prettier',
+  ],
 
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 11,
     sourceType: 'module',
   },
+
+  parser: 'babel-eslint',
 
   rules: {
     'accessor-pairs': OFF,
@@ -31,7 +37,7 @@ module.exports = {
     'no-multi-spaces': WARN,
     'no-restricted-syntax': [ERROR, 'WithStatement'],
     'no-shadow': WARN,
-    'no-unused-vars': [ERROR, { args: 'none' }],
+    'no-unused-vars': [WARN, { args: 'none' }],
     'no-useless-concat': OFF,
     quotes: [WARN, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     'space-before-blocks': ERROR,
@@ -39,5 +45,6 @@ module.exports = {
     'valid-typeof': [ERROR, { requireStringLiterals: true }],
     'no-var': ERROR,
     'max-len': OFF,
+    'react/prop-types': WARN,
   },
 };
