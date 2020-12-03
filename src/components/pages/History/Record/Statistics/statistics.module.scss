@@ -1,0 +1,26 @@
+.wrapper {
+  padding: 2rem;
+  display: flex;
+}
+
+.col {
+  width: 100%;
+  flex-grow: 1;
+  padding: 1rem 2rem;
+  border-right: 2px solid #00000017;
+
+  &:first-child {
+    padding-left: unset;
+  }
+
+  &:last-child {
+    padding-right: unset;
+    border-right: none;
+  }
+
+  &.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

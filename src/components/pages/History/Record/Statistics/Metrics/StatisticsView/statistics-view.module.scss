@@ -1,0 +1,30 @@
+.col {
+  border-bottom: 2px solid #00000017;
+  padding-bottom: 1rem;
+
+  &:last-child,
+  &:nth-last-child(2):nth-child(odd) {
+    padding-bottom: unset;
+    border-bottom: none;
+  }
+
+  &.titleCol {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: unset;
+  }
+}
+
+.title {
+  font-size: 1.2rem;
+}

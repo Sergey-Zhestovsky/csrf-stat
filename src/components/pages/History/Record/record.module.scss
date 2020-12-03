@@ -1,0 +1,17 @@
+.container {
+  margin-bottom: 2rem;
+}
+
+.prevue {
+  display: flex;
+  padding: 1rem 2rem calc(1rem - 2px);
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.5s;
+
+  &.open {
+    border-color: #00000017;
+  }
+}
+
+.toolbar {
+}

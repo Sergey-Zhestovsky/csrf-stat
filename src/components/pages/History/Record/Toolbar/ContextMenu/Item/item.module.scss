@@ -1,0 +1,23 @@
+.icon {
+  width: fit-content;
+  min-width: 2.5rem;
+  transition: color 0.125s;
+}
+
+.delete {
+  background: #ff00001a;
+  transition: all 0.125s;
+
+  &:hover {
+    background: #ff00002a;
+    color: #af0000;
+
+    & > .icon {
+      color: #af0000;
+    }
+  }
+}
+
+.text {
+  // margin-top: 0.45rem;
+}
