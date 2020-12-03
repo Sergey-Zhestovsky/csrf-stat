@@ -22,7 +22,12 @@ const Statistics = (props) => {
         <Metrics completeStatistics={completeStatistics} />
       </Box>
       <Box className={classnames(styles.col, styles.centered)}>
-        <Chart data={memorizedChartData} mode={chartMode} onChangeMode={setChartMode} />
+        <Chart
+          data={memorizedChartData}
+          mode={chartMode}
+          onChangeMode={setChartMode}
+          withOffButton={false}
+        />
       </Box>
     </Box>
   );

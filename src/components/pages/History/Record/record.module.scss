@@ -4,10 +4,12 @@
 
 .prevue {
   display: flex;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem calc(1rem - 2px);
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.5s;
 
   &.open {
-    border-bottom: 2px solid #00000017;
+    border-color: #00000017;
   }
 }
 

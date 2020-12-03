@@ -1,4 +1,5 @@
 import * as localForage from 'localforage';
+import 'localforage-getitems';
 import { nanoid } from 'nanoid';
 
 class HistoryProvider {
@@ -21,6 +22,12 @@ class HistoryProvider {
     const id = nanoid();
     await this.store.setItem(id, dataset);
     return id;
+  }
+
+  async edit(id, fields) {
+    const item = await this.getById(id);
+    await this.store.setItem(id, { ...item, ...fields });
+    return true;
   }
 
   async removeById(id) {

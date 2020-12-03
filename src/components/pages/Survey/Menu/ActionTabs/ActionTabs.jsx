@@ -77,7 +77,7 @@ const ActionTabs = (props) => {
         <ActionButton
           icon={Save}
           tooltip="Save result"
-          disabled={!withResults && !saved}
+          disabled={!withResults || saved}
           animation={true}
           onClick={saveHandler}
         />

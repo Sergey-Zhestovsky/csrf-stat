@@ -6,17 +6,20 @@ import chartModes from '../../../../data/chart-modes.json';
 import styles from './chart-controller.module.scss';
 
 const ChartController = (props) => {
-  const { mode, onChange = () => {} } = props;
+  const { mode, onChange = () => {}, withOffButton } = props;
 
   return (
     <ButtonGroup variant="outlined" color="primary">
-      <Button
-        className={classnames(styles.button, { [styles.active]: mode === chartModes.off })}
-        disabled={mode === chartModes.off}
-        onClick={onChange.bind(null, chartModes.off)}
-      >
-        Off
-      </Button>
+      {withOffButton && (
+        <Button
+          className={classnames(styles.button, { [styles.active]: mode === chartModes.off })}
+          disabled={mode === chartModes.off}
+          onClick={onChange.bind(null, chartModes.off)}
+        >
+          Off
+        </Button>
+      )}
+
       <Button
         className={classnames(styles.button, { [styles.active]: mode === chartModes.speed })}
         disabled={mode === chartModes.speed}

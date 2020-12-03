@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Box, IconButton } from '@material-ui/core';
+import { Box, IconButton, CircularProgress } from '@material-ui/core';
 import { ExpandMore, ExpandLess, MoreHoriz, Star } from '@material-ui/icons';
 import ContextMenu from './ContextMenu/ContextMenu';
 
@@ -11,6 +11,7 @@ const Toolbar = (props) => {
     favorite,
     toggleFavorite = () => {},
     onDelete = () => {},
+    dataLoading,
     collapse,
     toggleCollapse = () => {},
   } = props;
@@ -20,10 +21,27 @@ const Toolbar = (props) => {
 
   const handleToggle = () => setOpen((prevOpen) => !prevOpen);
   const handleClose = (event) => setOpen(false);
+  const toggleFavoriteAndClose = (...args) => {
+    setOpen(false);
+    toggleFavorite(...args);
+  };
+  const deleteAndClose = (...args) => {
+    setOpen(false);
+    onDelete(...args);
+  };
 
   return (
     <Box className={styles.toolbar}>
-      <IconButton className={styles.button} onClick={toggleCollapse}>
+      <IconButton
+        className={classnames(styles.button)}
+        onClick={toggleCollapse}
+        disabled={dataLoading}
+      >
+        {dataLoading && (
+          <Box className={styles.loadingBtn}>
+            <CircularProgress />
+          </Box>
+        )}
         {collapse ? <ExpandMore /> : <ExpandLess />}
       </IconButton>
 
@@ -43,8 +61,8 @@ const Toolbar = (props) => {
         open={open}
         onClose={handleClose}
         favorite={favorite}
-        toggleFavorite={toggleFavorite}
-        onDelete={onDelete}
+        toggleFavorite={toggleFavoriteAndClose}
+        onDelete={deleteAndClose}
       />
     </Box>
   );

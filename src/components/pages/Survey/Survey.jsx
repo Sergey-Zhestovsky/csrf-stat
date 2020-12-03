@@ -79,7 +79,7 @@ const Survey = (props) => {
 
   useEffect(() => {
     return () => {
-      pause();
+      if (actionState === actionStates.started) pause();
     };
   }, []);
 

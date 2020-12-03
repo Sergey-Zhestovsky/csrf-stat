@@ -1,3 +1,5 @@
+import round from '../../utils/round';
+
 class SurveyStatistic {
   constructor({ iterator, avgSeed, avgDelay, avgQueue, avgLoad }) {
     this.iterator = iterator;
@@ -104,15 +106,15 @@ class SurveyStatistic {
     };
 
     dataset.forEach((data) => {
-      variance.speed += Math.pow((data.speed, statistics.avgSeed), 2);
-      variance.delay += Math.pow((data.delay, statistics.avgDelay), 2);
-      variance.queue += Math.pow((data.queue, statistics.avgQueue), 2);
-      variance.load += Math.pow((data.load, statistics.avgLoad), 2);
+      variance.speed += Math.pow(data.speed - statistics.avgSeed, 2);
+      variance.delay += Math.pow(data.delay - statistics.avgDelay, 2);
+      variance.queue += Math.pow(data.queue - statistics.avgQueue, 2);
+      variance.load += Math.pow(data.load - statistics.avgLoad, 2);
     });
 
     return {
       varianceSpeed: variance.speed,
-      standardDeviationSeed: Math.sqrt(variance.seed / statistics.iterator) || 0,
+      standardDeviationSeed: Math.sqrt(variance.speed / statistics.iterator) || 0,
 
       varianceDelay: variance.delay,
       standardDeviationDelay: Math.sqrt(variance.delay / statistics.iterator) || 0,
@@ -133,32 +135,32 @@ class SurveyStatistic {
 
     return {
       speed: {
-        min: minMax.minSpeed,
-        max: minMax.maxSpeed,
-        avg: statistics.avgSeed,
-        variance: standardDeviation.varianceSpeed,
-        standardDeviation: standardDeviation.standardDeviationSeed,
+        min: round(minMax.minSpeed),
+        max: round(minMax.maxSpeed),
+        avg: round(statistics.avgSeed),
+        variance: round(standardDeviation.varianceSpeed),
+        standardDeviation: round(standardDeviation.standardDeviationSeed),
       },
       delay: {
-        min: minMax.minDelay,
-        max: minMax.maxDelay,
-        avg: statistics.avgDelay,
-        variance: standardDeviation.varianceDelay,
-        standardDeviation: standardDeviation.standardDeviationDelay,
+        min: round(minMax.minDelay),
+        max: round(minMax.maxDelay),
+        avg: round(statistics.avgDelay),
+        variance: round(standardDeviation.varianceDelay),
+        standardDeviation: round(standardDeviation.standardDeviationDelay),
       },
       queue: {
-        min: minMax.minQueue,
-        max: minMax.maxQueue,
-        avg: statistics.avgQueue,
-        variance: standardDeviation.varianceQueue,
-        standardDeviation: standardDeviation.standardDeviationQueue,
+        min: round(minMax.minQueue),
+        max: round(minMax.maxQueue),
+        avg: round(statistics.avgQueue),
+        variance: round(standardDeviation.varianceQueue),
+        standardDeviation: round(standardDeviation.standardDeviationQueue),
       },
       load: {
-        min: minMax.minLoad,
-        max: minMax.maxLoad,
-        avg: statistics.avgLoad,
-        variance: standardDeviation.varianceLoad,
-        standardDeviation: standardDeviation.standardDeviationLoad,
+        min: round(minMax.minLoad),
+        max: round(minMax.maxLoad),
+        avg: round(statistics.avgLoad),
+        variance: round(standardDeviation.varianceLoad),
+        standardDeviation: round(standardDeviation.standardDeviationLoad),
       },
     };
   }

@@ -31,9 +31,9 @@ const ContextMenu = (props) => {
                 <MenuList>
                   <Item icon={Visibility} text="View aside" onClick={onClose} />
                   {favorite ? (
-                    <Item icon={StarBorder} text="Remove favorite" onClick={toggleFavorite} />
+                    <Item icon={StarBorder} text="Unfollow" onClick={toggleFavorite} />
                   ) : (
-                    <Item icon={Star} text="Add favorite" onClick={toggleFavorite} />
+                    <Item icon={Star} text="Follow" onClick={toggleFavorite} />
                   )}
                   <Item variant="delete" icon={Delete} text="Delete" onClick={deleteHandler} />
                 </MenuList>

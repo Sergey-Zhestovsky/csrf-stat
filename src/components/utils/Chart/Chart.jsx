@@ -20,7 +20,7 @@ const axes = [
 ];
 
 const Chart = (props) => {
-  const { data = [], mode, onChangeMode } = props;
+  const { data = [], mode, onChangeMode, withOffButton = true } = props;
 
   return (
     <Box>
@@ -28,7 +28,7 @@ const Chart = (props) => {
         <ReactChart data={[{ data }]} series={series} axes={axes} getSeriesStyle={getSeriesStyle} />
       </Box>
       <Box className={styles.buttonGroupWrapper}>
-        <ChartController mode={mode} onChange={onChangeMode} />
+        <ChartController mode={mode} onChange={onChangeMode} withOffButton={withOffButton} />
       </Box>
     </Box>
   );

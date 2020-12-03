@@ -1,10 +1,22 @@
 .stat {
-  margin-bottom: 2rem;
-  border-bottom: 2px solid #00000017;
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 1rem;
+}
 
-  &:last-child {
-    margin-bottom: unset;
+.col {
+  border-bottom: 2px solid #00000017;
+  padding-bottom: 1rem;
+
+  &:last-child,
+  &:nth-last-child(2):nth-child(odd) {
+    padding-bottom: unset;
     border-bottom: none;
+  }
+
+  &.titleCol {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -14,8 +26,8 @@
   align-items: center;
   margin-bottom: 1rem;
 
-  &.center {
-    justify-content: space-around;
+  &:last-child {
+    margin-bottom: unset;
   }
 }
 
