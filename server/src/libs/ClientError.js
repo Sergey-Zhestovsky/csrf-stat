@@ -52,7 +52,7 @@ class ClientError extends Error {
 
 class Client400Error extends ClientError {
   constructor(message) {
-    const validError = ClientError.Errors.VALIDATION__ERROR;
+    const validError = ClientError.Errors.VALIDATION_ERROR;
     super({
       ...validError,
       message: message || validError.message,

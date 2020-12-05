@@ -5,6 +5,7 @@ const winston = require('winston');
 const moment = require('moment');
 const DailyRotateFile = require('winston-daily-rotate-file');
 const singleton = require('../utils/singleton');
+const env = require('../data/constants/env');
 
 const LOG_PATH = path.join(__dirname, '../../logs');
 
@@ -94,6 +95,7 @@ class Logger {
     };
 
     return new winston.transports.Console({
+      level: process.env.NODE_ENV === env.DEVELOPMENT ? 'debug' : 'info',
       format: winston.format.combine(winston.format.printf(assembleLogOutput), winston.format.colorize({ all: true })),
     });
   }

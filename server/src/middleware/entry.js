@@ -1,3 +1,4 @@
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
@@ -8,12 +9,19 @@ const queryMutator = require('./utils/queryMutator');
 
 const logger = new Logger();
 
+const timer = (req, res, next) => {
+  req.timestamp = Date.now();
+  next();
+};
+
 const mutateQuery = (req, res, next) => {
   queryMutator(req, res);
   next();
 };
 
 module.exports = [
+  cors(),
+  timer,
   helmet(),
   bodyParser.urlencoded({ extended: false }),
   bodyParser.json({ limit: '150kb' }),
