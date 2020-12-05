@@ -1,5 +1,100 @@
 .wrapper {
-  margin-top: 4rem;
+  background: #231f20;
+  color: white;
+}
+
+.row {
   padding: 1rem 0;
-  background: #00000017;
+  border-bottom: 2px solid#f50057;
+
+  &.cols {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 3rem;
+    padding: 3rem 0px;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.imgCol {
+  display: flex;
+  align-items: center;
+}
+
+.imgWrapper {
+  display: flex;
+}
+
+.img {
+  width: 20rem;
+}
+
+.colTitle {
+  position: relative;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 45%;
+    height: 2px;
+    background: #f50057;
+  }
+}
+
+.about {
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.contacts {
+  margin-top: 2rem;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.navTitle {
+  text-align: right;
+
+  &:after {
+    left: unset;
+    right: 0;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.link {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem 1rem;
+  padding-right: 0rem;
+  border: 1px solid transparent;
+  transition: all 0.25s;
+
+  &:hover {
+    padding-right: 1rem;
+  }
+
+  &.active {
+    padding-right: 1rem;
+    border-color: #f50057;
+    color: #f50057;
+  }
+}
+
+.copyright {
+  text-align: right;
 }

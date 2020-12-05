@@ -1,5 +1,6 @@
 {
   "name": "csrf-stat-client",
+  "proxy": "3030",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
