@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20vh 0px;
+}
+
+.iconWrapper {
+  width: 8rem;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  animation: rotation 3s cubic-bezier(0.4, 0.4, 0.4, 0.4) infinite;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  color: grey;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
