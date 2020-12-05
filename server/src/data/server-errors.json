@@ -1,0 +1,14 @@
+{
+  "INTERNAL_SERVER_ERROR": {
+    "code": "000",
+    "status": "500",
+    "name": "Internal server error",
+    "message": "Internal server error."
+  },
+  "VALIDATION_ERROR": {
+    "code": "001",
+    "status": "400",
+    "name": "Validation error",
+    "message": "Bad request."
+  }
+}

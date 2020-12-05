@@ -1,0 +1,1 @@
+# CSRF statistic suits - Client
