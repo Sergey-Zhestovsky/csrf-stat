@@ -1,10 +1,10 @@
 module.exports = {
-  doubleCookies: [15, 100],
-  encryptedToken: [15, 100],
-  authorizationHeader: [15, 100],
-  secureCookies: [15, 100],
-  formSigning: [15, 100],
-  domainTable: [15, 100],
-  clientIntermediary: [15, 100],
-  transmissionAssurance: [15, 100],
+  doubleCookies: [150, 15.5],
+  encryptedToken: [96, 5],
+  authorizationHeader: [83, 3.5],
+  secureCookies: [60, 2],
+  formSigning: [115, 23],
+  domainTable: [176, 4],
+  clientIntermediary: [57, 2],
+  transmissionAssurance: [60, 7],
 };

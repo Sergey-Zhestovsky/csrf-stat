@@ -1,4 +1,5 @@
 {
   "package": "/data",
+  "bigPackage": "/big-data",
   "logic": "/logic"
 }

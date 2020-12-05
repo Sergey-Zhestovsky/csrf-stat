@@ -8,6 +8,7 @@ class EnvironmentService {
     this.bigData = bigDataSize ? dataSample.slice(0, bigDataSize) : dataSample;
     this.paths = {
       package: environmentPathsConfig.package,
+      bigPackage: environmentPathsConfig.bigPackage,
       logic: environmentPathsConfig.logic,
     };
   }
@@ -21,7 +22,7 @@ class EnvironmentService {
 
   getBig = () => {
     return {
-      url: this.paths.package,
+      url: this.paths.bigPackage,
       data: this.bigData,
     };
   };

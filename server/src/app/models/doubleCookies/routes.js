@@ -4,12 +4,17 @@ const { validateBody, gate } = require('../../utils/routers/validators');
 
 const router = Router();
 
-router.post('/data', validateBody(['timestamp']), gate(10), async ({ body, timestamp }, res) => {
+router.post('/data', validateBody(['timestamp']), gate(13), async ({ body, timestamp }, res) => {
   const result = await processData(timestamp, body.timestamp);
   return res.status(200).return(result);
 });
 
-router.post('/logic', validateBody(['timestamp']), gate(16), async ({ body, timestamp }, res) => {
+router.post('/big-data', validateBody(['timestamp']), gate(13), async ({ body, timestamp }, res) => {
+  const result = await processData(timestamp, body.timestamp);
+  return res.status(200).return(result);
+});
+
+router.post('/logic', validateBody(['timestamp']), gate(15), async ({ body, timestamp }, res) => {
   const result = await loadProcess(timestamp, body.timestamp);
   return res.status(200).return(result);
 });

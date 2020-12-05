@@ -15,7 +15,7 @@ const Record = (props) => {
   const [storedResult, setStoredResult] = useState(null);
 
   const dataLoading = !collapse && !storedResult;
-  const open = !collapse && storedResult;
+  const open = !collapse && !!storedResult;
 
   const toggleCollapse = async () => {
     setCollapse((curr) => !curr);
