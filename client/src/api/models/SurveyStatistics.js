@@ -34,9 +34,9 @@ class SurveyStatistic {
 
   append(queryResult) {
     const avgSeed = this.newAvg(this.avgSeed, queryResult.speed);
-    const avgDelay = this.newAvg(this.avgSeed, queryResult.delay);
-    const avgQueue = this.newAvg(this.avgSeed, queryResult.queue);
-    const avgLoad = this.newAvg(this.avgSeed, queryResult.load);
+    const avgDelay = this.newAvg(this.avgDelay, queryResult.delay);
+    const avgQueue = this.newAvg(this.avgQueue, queryResult.queue);
+    const avgLoad = this.newAvg(this.avgLoad, queryResult.load);
     const iterator = this.iterator + 1;
 
     return new SurveyStatistic({

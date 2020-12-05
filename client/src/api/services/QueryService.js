@@ -4,6 +4,8 @@ import EnvironmentService from './EnvironmentService';
 const environmentService = new EnvironmentService();
 
 class QueryService {
+  static delay = parseInt(process.env.REACT_APP_REQUEST_SPEED);
+
   constructor(algorithmId, environmentId) {
     this.queryAlgorithm = AlgorithmService.getQueryByAlgorithmId(algorithmId);
     this.withEnvironment = environmentService.getByEnvironmentId(environmentId);
@@ -15,11 +17,17 @@ class QueryService {
     return new QueryService(algorithmId, environmentId);
   }
 
-  start(callback, delay = 150) {
+  start(callback = () => {}, onStop = () => {}, delay = QueryService.delay || 150) {
     this.timeout = setInterval(async () => {
       if (!this.queryAlgorithm || !this.withEnvironment) return;
-      const data = await this.queryAlgorithm(this.withEnvironment());
-      callback(data);
+
+      try {
+        const data = await this.queryAlgorithm(this.withEnvironment());
+        callback(data);
+      } catch (error) {
+        this.stop();
+        onStop(error);
+      }
     }, delay);
   }
 

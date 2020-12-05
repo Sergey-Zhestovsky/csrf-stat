@@ -12,48 +12,64 @@ class AlgorithmService {
   }
 
   static async queryDoubleCookies({ url, data, ...config }) {
-    const { data: response } = await connectors.doubleCookiesConnector.post(url, data, config);
+    const response = await connectors.doubleCookiesConnector.postWithTimestamp(
+      url,
+      { data },
+      config
+    );
     return AlgorithmService.processResponse(response);
   }
 
   static async queryEncryptedToken({ url, data, ...config }) {
-    const { data: response } = await connectors.encryptedTokenConnector.post(url, data, config);
+    const response = await connectors.encryptedTokenConnector.postWithTimestamp(
+      url,
+      { data },
+      config
+    );
     return AlgorithmService.processResponse(response);
   }
 
   static async queryAuthorizationHeader({ url, data, ...config }) {
-    const { data: response } = await connectors.authorizationHeaderConnector.post(
+    const response = await connectors.authorizationHeaderConnector.postWithTimestamp(
       url,
-      data,
+      { data },
       config
     );
     return AlgorithmService.processResponse(response);
   }
 
   static async querySecureCookies({ url, data, ...config }) {
-    const { data: response } = await connectors.secureCookiesConnector.post(url, data, config);
+    const response = await connectors.secureCookiesConnector.postWithTimestamp(
+      url,
+      { data },
+      config
+    );
     return AlgorithmService.processResponse(response);
   }
 
   static async queryFormSigning({ url, data, ...config }) {
-    const { data: response } = await connectors.formSigningConnector.post(url, data, config);
+    const response = await connectors.formSigningConnector.postWithTimestamp(url, { data }, config);
     return AlgorithmService.processResponse(response);
   }
 
   static async queryDomainTable({ url, data, ...config }) {
-    const { data: response } = await connectors.domainTableConnector.post(url, data, config);
+    const response = await connectors.domainTableConnector.postWithTimestamp(url, { data }, config);
     return AlgorithmService.processResponse(response);
   }
 
   static async queryClientIntermediary({ url, data, ...config }) {
-    const { data: response } = await connectors.clientIntermediaryConnector.post(url, data, config);
+    const response = await connectors.clientIntermediaryConnector.postWithTimestamp(
+      url,
+      { data },
+      config
+    );
     return AlgorithmService.processResponse(response);
   }
 
   static async queryTransmissionAssurance({ url, data, ...config }) {
-    const { data: response } = await connectors.transmissionAssuranceConnector.post(
+    const response = await connectors.transmissionAssuranceConnector.postWithTimestamp(
       url,
-      data,
+      { data },
       config
     );
     return AlgorithmService.processResponse(response);

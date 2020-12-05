@@ -39,7 +39,6 @@ const Notification = (props) => {
       : null;
 
     return () => {
-      console.log('cleaning', timeout);
       clearTimeout(timeout);
     };
   }, []);

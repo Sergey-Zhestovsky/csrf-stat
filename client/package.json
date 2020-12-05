@@ -1,6 +1,5 @@
 {
   "name": "csrf-stat-client",
-  "proxy": "3030",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -30,6 +29,7 @@
     "react-virtualized": "^9.22.2",
     "redux": "~4.0.5",
     "redux-thunk": "~2.3.0",
+    "url-join": "^4.0.1",
     "web-vitals": "~0.2.4"
   },
   "scripts": {

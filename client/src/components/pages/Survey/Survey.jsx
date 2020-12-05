@@ -36,9 +36,18 @@ const Survey = (props) => {
     environment,
   ]);
 
+  const errorStop = (error) => {
+    queryService.stop();
+    setActionState(actionStates.stopped);
+    addNotification({
+      title: 'Query error occurred while requesting to the server',
+      type: 'error',
+    });
+  };
+
   const start = () => {
     setSaved(false);
-    queryService.start(append);
+    queryService.start(append, errorStop);
     setActionState(actionStates.started);
   };
 
